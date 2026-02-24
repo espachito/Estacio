@@ -1,12 +1,12 @@
 /*
 
-DESAFIO 1 - NÍVEL NOVATO
+DESAFIO 1 - NÍVEL AVENTUREIRO
 
-Criando as Cartas do Super Trunfo
+Calculando Densidade Populacional e PIB per Capita
 
-Neste primeiro nível, o objetivo deste código é construir a base do jogo Super Trunfo de Países: um
-sistema para cadastrar as cartas com informações sobre as cidades. O código a seguir fará a leitura de
-dados do usuário, o armazenamento em variáveis e a exibição dessas informações na tela.
+No nível anterior, o código estava somente cadastrando as cartas do Super Trunfo. Agora, o código adiciona mais detalhes
+e complexidade ao nosso jogo! Neste nível, é implementada a lógica para calcular e exibir duas novas propriedades
+importantes para cada cidade: a densidade populacional e o PIB per capita.
 
 Autor: Elder de Souza Pachito - Matrícula: 202505123303
 
@@ -26,6 +26,8 @@ int main() {
     float area_1;             // Variável que armazenará a árem em Km2 da cidade
     float PIB_1;              // Variável que armazenará o valor em reais do PIB da cidade
     int qtde_pturist_1;       // Variável que armazenará a quantidade de pontos turísticos da cidade
+    float dens_pop_1;         // Variável que armazenará a densidade populacional da cidade
+    float PIB_percapita_1;    // Variável que armazenará o PIP per capita da cidade;
 
     // Declaração das variáveis que armazenarão os dados da segunda carta (Carta 2):
     char estado_2;            // Variável que armazenará uma letra de A a H, representando um dos 8 estados
@@ -35,6 +37,8 @@ int main() {
     float area_2;             // Variável que armazenará a árem em Km2 da cidade
     float PIB_2;              // Variável que armazenará o valor em reais do PIB da cidade
     int qtde_pturist_2;       // Variável que armazenará a quantidade de pontos turísticos da cidade
+    float dens_pop_2;         // Variável que armazenará a densidade populacional da cidade
+    float PIB_percapita_2;    // Variável que armazenará o PIP per capita da cidade;
 
     // Solicitação dos dados da primeira carta (Carta 1) ao usuário:
     printf("ENTRADA DE DADOS PARA A PRIMEIRA CARTA - CARTA 1:\n\n");
@@ -54,6 +58,12 @@ int main() {
     scanf("%d", &qtde_pturist_1); // Obtém a quantidade de pontos turísticos da cidade da primeira carta
     printf("\n");
 
+    // Calcula a densidade populacional da cidade da primeira carta:
+    dens_pop_1 = (float) populacao_1 / area_1;
+
+    // Calcula o PIP per capita da cidade da primeira carta;
+    PIB_percapita_1 = (float) PIB_1 / populacao_1;
+
     // Exibe os dados coletados para a primeira carta - Carta 1:
     printf("CONFIRMAÇÃO DOS DADOS COLETADOS PARA A PRIMEIRA CARTA - CARTA 1:\n\n");
     printf("- Estado: %c\n", estado_1);
@@ -63,6 +73,10 @@ int main() {
     printf("- Área: %.2f Km2\n", area_1);
     printf("- PIB: R$ %.2f\n", PIB_1);
     printf("- Quantidade de Pontos Turísticos: %d\n", qtde_pturist_1);
+
+    // Exibe os valores calulados para a densidade populacional e o PIB per capita da cidade da primeira carta
+    printf("- Densidade Populacional: %.2f Hab/Km2\n", dens_pop_1);
+    printf("- PIP per Capita: %.2f R$/Hab\n", PIB_percapita_1);
     printf("\n");
 
     // Solicitação dos dados da segunda carta (Carta 2) ao usuário:
@@ -83,6 +97,12 @@ int main() {
     scanf("%d", &qtde_pturist_2); // Obtém a quantidade de pontos turísticos da cidade da segunda carta
     printf("\n");
 
+    // Calcula a densidade populacional da cidade da segunda carta:
+    dens_pop_2 = (float) populacao_2 / area_2;
+
+    // Calcula o PIP per capita da cidade da segunda carta;
+    PIB_percapita_2 = (float) PIB_2 / populacao_2;
+
     // Exibe os dados coletados para a segunda carta - Carta 2:
     printf("CONFIRMAÇÃO DOS DADOS COLETADOS PARA A SEGUNDA CARTA - CARTA 2:\n\n");
     printf("- Estado: %c\n", estado_2);
@@ -92,6 +112,10 @@ int main() {
     printf("- Área: %.2f Km2\n", area_2);
     printf("- PIB: R$ %.2f\n", PIB_2);
     printf("- Quantidade de Pontos Turísticos: %d\n", qtde_pturist_2);
+
+    // Exibe os valores calulados para a densidade populacional e o PIB per capita da cidade da segunda carta
+    printf("- Densidade Populacional: %.2f Hab/Km2\n", dens_pop_2);
+    printf("- PIP per Capita: %.2f R$/Hab\n", PIB_percapita_2);
     printf("\n");
 
     // Finalização do bloco principal do código:
