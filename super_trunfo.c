@@ -76,7 +76,7 @@ int main() {
 
     // Exibe os valores calulados para a densidade populacional e o PIB per capita da cidade da primeira carta
     printf("- Densidade Populacional: %.2f Hab/Km2\n", dens_pop_1);
-    printf("- PIP per Capita: %.2f R$/Hab\n", PIB_percapita_1);
+    printf("- PIB per Capita: %.2f R$/Hab\n", PIB_percapita_1);
     printf("\n");
 
     // Solicitação dos dados da segunda carta (Carta 2) ao usuário:
@@ -115,7 +115,7 @@ int main() {
 
     // Exibe os valores calulados para a densidade populacional e o PIB per capita da cidade da segunda carta
     printf("- Densidade Populacional: %.2f Hab/Km2\n", dens_pop_2);
-    printf("- PIP per Capita: %.2f R$/Hab\n", PIB_percapita_2);
+    printf("- PIB per Capita: %.2f R$/Hab\n", PIB_percapita_2);
     printf("\n");
 
     // Finalização do bloco principal do código:
