@@ -1,11 +1,11 @@
 /*
 
-DESAFIO 1 - NÍVEL MESTRE
+DESAFIO 1 - TEMA 3 - SUPER TRUNFO (Nível NOVATO)
 
-Batalha de Cartas no Super Trunfo
+Comparando Cartas do Super Trunfo
 
-Neste nível avançado, é implementada a lógica de comparação entre duas cartas do Super Trunfo, determinando a vencedora
-de cada atributo e introduzindo o conceito de "Super Poder".
+O código agora implementa a lógica para comparar duas cartas e determinar a vencedora com base em um único atributo numérico (como população, área, PIB, etc.). Este desafio é
+uma continuação do desafio do tema anterior, sendo que o foco deste nível é a comparação entre duas cartas já cadastradas, utilizando estruturas de decisão if e if-else.
 
 Autor: Elder de Souza Pachito - Matrícula: 202505123303
 
@@ -131,11 +131,28 @@ int main() {
     printf("- SUPER PODER: %.2f\n", superpoder_2);
     printf("\n");
 
-    // Imprime cabeçalho com legenda para a exibição do resultado final:
-    printf("RESULTADO FINAL - IDENTIFICAÇÃO DA CARTA VENCEDORA:\n\n");
-    printf("Legenda:\n   1 = Quesito vencido pela CARTA 1\n   2 = Quesito vencido pela CARTA 2\n\n");
+    // Atributo escolhido para a determinação da carta vencedora: SUPER PODER
     
-    // Compara as cartas:
+    // Imprime cabeçalho para a exibição do resultado final:
+    printf("RESULTADO FINAL - IDENTIFICAÇÃO DA CARTA VENCEDORA:\n\n");
+    printf("Atributo usado para determinação da carta vencedora: SUPER PODER\n\n");
+    
+    // Exibe o valor do atributo SUPER PODER de cada carta, compara as cartas e informa a carta vencedora:
+    printf("- CARTA 1: %s (%c) - SUPER PODER: %.2f\n", cidade_1, estado_1, superpoder_1);
+    printf("- CARTA 2: %s (%c) - SUPER PODER: %.2f\n", cidade_2, estado_2, superpoder_2);
+    printf("\n");
+
+    if (superpoder_1 > superpoder_2) {
+        printf("A CARTA VENCEDORA PELO ATRIBUTO SUPER PODER É A CARTA 1: %s (%c) - VENCEU!!!\n", cidade_1, estado_1);
+    } else {
+        printf("A CARTA VENCEDORA PELO ATRIBUTO SUPER PODER É A CARTA 2: %s (%c) - VENCEU!!!\n", cidade_2, estado_2);
+    }
+
+    printf("\n");
+    
+    /* 
+    BLOCO DE CÓDIGO UTILIZADO NO DESAFIO ANTERIOR E MANTIDO AQUI POR PRECAUÇÂO CASO SEJA NECESSÁRIO REAPROVEITÁ-LO NO FUTURO
+
     printf("Quesito População: %d\n", (populacao_1 < populacao_2) + 1);
     printf("Quesito Área: %d\n", (area_1 < area_2) + 1);
     printf("PIB: %d\n", (PIB_1 < PIB_2) + 1);
@@ -144,6 +161,7 @@ int main() {
     printf("PIB per capita: %d\n", (PIB_percapita_1 < PIB_percapita_2) + 1);
     printf("SUPER PODER: %d\n", (superpoder_1 < superpoder_2) + 1);
     printf("\n");
+    */
 
     // Finalização do bloco principal do código:
     return 0;
