@@ -1,12 +1,11 @@
 /*
 
-DESAFIO 2 - TEMA 4 - XADREZ (Nível AVENTUREIRO)
+DESAFIO 2 - TEMA 4 - XADREZ (Nível MESTRE)
 
-Movimentando o Cavalo
+Criando Movimentos Complexos
 
-Esta versão do código implementa, no mesmo programa em C do desafio anterior, a lógica para o movimento do Cavalo. O Cavalo se move duas casas em uma direção (horizontal ou
-vertical) e depois uma casa perpendicularmente, formando um "L". Para este desafio, o Cavalo deverá se mover duas casas para baixo e uma casa para a esquerda. Esta versão usa
-dois loops aninhados, sendo um deles um loop FOR e o outro loop WHILE. Assim como nas outras peças, o código imprime a direção do movimento a cada casa percorrida.
+Neste desafio final, o código aprimora o programa de xadrez que vem sendo desenvolvido, explorando técnicas avançadas de programação para simular os movimentos das peças.
+Nesta versão, serão utilizados recursividade e loops complexos!
 
 Autor: Elder de Souza Pachito - Matrícula: 202505123303
 
@@ -14,6 +13,31 @@ Autor: Elder de Souza Pachito - Matrícula: 202505123303
 
 // Inclusão da biblioteca necessária para a entrada e exibição de dados:
 #include <stdio.h>
+
+// Procedimento recursivo para o movimento da TORRE:
+void movimenta_torre(int qtde_casas) {
+    if (qtde_casas > 0) {
+        printf("-> DIREITA ");
+        movimenta_torre(qtde_casas - 1);
+    }
+}
+
+// Procedimento recursivo para o movimento do BISPO:
+void movimenta_bispo(int qtde_casas) {
+    if (qtde_casas > 0) {
+        printf("-> CIMA+DIREITA ");
+        movimenta_bispo(qtde_casas - 1);
+    }
+}
+
+// Procedimento recursivo para o movimento da RAINHA:
+void movimenta_rainha(int qtde_casas) {
+    if (qtde_casas > 0) {
+        printf("-> ESQUERDA ");
+        movimenta_rainha(qtde_casas - 1);
+    }
+}
+
 
 // Início do bloco principal do código:
 int main() {
@@ -27,48 +51,51 @@ int main() {
     int i = 1;               // Variável de controle das estruturas WHILE e DO-WHILE;
     int fim_do_salto = 0;    // Variável que controla se o salto do CAVALO terminou ou não
     
-    // Realiza a simulação do movimento da TORRE utilizando a estrutura WHILE, e exibe cada movimento numa mesma linha na tela:
+    // Imprime o rótulo do movimento e chama o procedimento recursivo que irá simular e exibir em tela o movimento da TORRE:
     printf("MOVIMENTO DA TORRE:    ");
-    while (i <= 5) {
-        printf("-> DIREITA ");
-        i++;
-    }
+    movimenta_torre(mov_torre);
 
-    // Reinicializa a variável auxiliar i para iniciar um novo loop, para outra peça:
-    i = 1;
-    
     // Salta linha(s) na tela do terminal:
     printf("\n\n");
     
-    // Realiza a simulação do movimento do BISPO utilizando a estrutura DO-WHILE, e exibe cada movimento numa mesma linha na tela:
+    // Imprime o rótulo do movimento e chama o procedimento recursivo que irá simular e exibir em tela o movimento do BISPO:
     printf("MOVIMENTO DO BISPO:    ");
-    do {
-        printf("-> CIMA+DIREITA ");
-        i++;
-    } while (i <= 5);
+    movimenta_bispo(mov_bispo);
 
     // Salta linha(s) na tela do terminal:
     printf("\n\n");
     
-    // Realiza a simulação do movimento da RAINHA utilizando a estrutura FOR, e exibe cada movimento numa mesma linha na tela:
+    // Imprime o rótulo do movimento e chama o procedimento recursivo que irá simular e exibir em tela o movimento da RAINHA:
     printf("MOVIMENTO DA RAINHA:   ");
-    for (i = 1; i <= mov_rainha; i++) {
-        printf("-> ESQUERDA ");
-    }
+    movimenta_rainha(mov_rainha);
 
     // Salta linha(s) na tela do terminal:
     printf("\n\n");
     
-    // Realiza a simulação do movimento do CAVALO utilizando a estrutura WHILE aninhada dentro de uma estrutura FOR, e exibe o movimento na tela:
+    // Realiza a simulação do movimento do CAVALO utilizando estruturas complexas conforme requisitado, e exibe a simulação do movimento na tela:
     printf("MOVIMENTO DO CAVALO:   ");
-    fim_do_salto = 0;                         // Estabelece que o "fim do salto" do CAVALO ainda não ocorreu, o que é representado pelo valor 0 (Falso)
     while (fim_do_salto == 0) {               // Enquanto o "fim do salto" ainda NÃO ocorreu, realiza a primeira parte do salto
-        for (int i = 1; i <= 2; i++) {        // Na primeira parte do salto do CAVALO, e conforme solicitado, o CAVALO passará por cima de 2 casas para BAIXO
-            printf("-> BAIXO ");
+        for (int i = 1, casa_atual = 1; (i <= 2) && (casa_atual <= 2); i++, casa_atual--) {   // Inclui condições complexas e variáveis múltiplas somente para atender ao requisitado
+            printf("-> CIMA ");
+            if (casa_atual == 2) {
+                break;
+            }
         }
         fim_do_salto = 1;                     // Muda o valor da variável FIM DO SALTO para 1, caracterizando que a primeira parte do salto terminou
     }
-    printf("-> ESQUERDA");                       // Exibe a última parte do salto na tela
+    printf("-> DIREITA");                       // Exibe a última parte do salto na tela
+
+    // Salta linha(s) na tela do terminal:
+    printf("\n\n");
+    
+    // Imprime o rótulo do movimento e chama o procedimento recursivo que irá simular e exibir em tela o movimento do BISPO:
+    printf("MOVIMENTO DO BISPO 2:  ");
+    for (int i = 1; i <= mov_bispo; i++){       // Movimente vertical, loop de 5 vezes, conforme requisitado
+        printf("-> CIMA");
+        for (int j = 1; j <= 1; j++) {          // Movimento horizontal, loop de 1 vez, pois a cada loop vertical o horizontal anda junto 1 passo
+            printf("+DIREITA ");
+        }
+    }
 
     // Salta linha(s) na tela do terminal:
     printf("\n\n");
