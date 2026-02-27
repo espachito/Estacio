@@ -1,10 +1,11 @@
 /*
 
-DESAFIO 3 - TEMA 5 - BATALHA NAVAL (Nível AVENTUREIRO)
+DESAFIO 3 - TEMA 5 - BATALHA NAVAL (Nível MESTRE)
 
-Tabuleiro Completo e Navios Diagonais
+Habilidades especiais e áreas de efeito
 
-Nesta etapa, aprimoramos o jogo de Batalha Naval adicionando a complexidade de navios posicionados na diagonal.
+Neste desafio final, é adicionado um toque estratégico ao jogo de Batalha Naval, implementando habilidades especiais com áreas de efeito distintas e adicionando a lógica para
+representar e exibir essas habilidades no tabuleiro.
 
 Autor: Elder de Souza Pachito - Matrícula: 202505123303
 
@@ -14,8 +15,13 @@ Autor: Elder de Souza Pachito - Matrícula: 202505123303
 #include <stdio.h>
 #include <stdlib.h>
 
-// Criando a matriz principal que representará o tabuleiro virtual do jogo em memória, com ouma variável global estática:
+// Declarando a matriz principal que representará o tabuleiro virtual do jogo em memória, com ouma variável global estática:
 static int tabuleiro[10][10];
+
+// Declarando as matrizes de habilidades, como variáveis globais e estáticas:
+static int hab_cone[3][5];
+static int hab_cruz[3][5];
+static int hab_octa[3][5];
 
 // Procedimento que recebe o vetor NAVIO e o vetor POSICAO e o insere no tabuleiro:
 void insere_navio(int * navio, int * posicao, int tamanho) {
@@ -80,6 +86,17 @@ void insere_navio(int * navio, int * posicao, int tamanho) {
     }
 }
 
+// Procedimento para aplicar uma matriz de habilidade no tabuleiro, nas coordenadas recebidas como parâmetros, considerando a origem de aplicação, também recebida
+void aplica_hab(int habilidades[3][5], int pos_i, int pos_j, int origem_i, int origem_j) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (habilidades[i][j] == 1) {
+                tabuleiro[pos_i - origem_i + i][pos_j - origem_j + j] = 5;
+            }
+        }
+    }
+}
+
 int main() {
 
     // Criando os vetores que representarão os navios:
@@ -114,8 +131,73 @@ int main() {
     insere_navio(nav3, pos_nav3, 4);
     insere_navio(nav4, pos_nav4, 2);
 
+    // Exibe o cabeçalho para o tabuleiro antes da inserção das habilidades:
+    printf("TABULEIRO COM OS NAVIOS E SEM AS HABILIDADES:\n\n");
+
     // Exibindo o tabuleiro e seu conteúdi (navios):
+    printf("     A B C D E F G H I J\n");
     for (int i = 0; i < 10; i++) {
+        printf("%2d - ", i + 1);
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Salta linha(s) na tela do terminal:
+    printf("\n");
+    
+    // Cria a matriz de habilidades CONE:
+    printf("Matriz de Habilidades - CONE:\n\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            hab_cone[i][j] = ((j == 2) || (i == 2) || ((i == 1) && ((j == 1) || (j == 3)))) ? 1 : 0;
+            printf("%d ", hab_cone[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Salta linha(s) na tela do terminal:
+    printf("\n");
+    
+    // Cria a matriz de habilidades CRUZ:
+    printf("Matriz de Habilidades - CRUZ:\n\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            hab_cruz[i][j] = ((j == 2) || (i == 1)) ? 1 : 0;
+            printf("%d ", hab_cruz[i][j]);
+        }
+        printf("\n");
+    }
+    
+    // Salta linha(s) na tela do terminal:
+    printf("\n");
+    
+    // Cria a matriz de habilidades OCTA:
+    printf("Matriz de Habilidades - OCTAEDRO:\n\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            hab_octa[i][j] = ((j == 2) || ((i == 1) && ((j >= 1) && (j <= 3)))) ? 1 : 0;
+            printf("%d ", hab_octa[i][j]);
+        }
+        printf("\n");
+    }
+
+    // aplica as matrizes de habilidades no tabuleiro:
+    aplica_hab(hab_cone, 2, 4, 0, 2);
+    aplica_hab(hab_cruz, 8, 2, 1, 2);
+    aplica_hab(hab_octa, 1, 7, 1, 2);
+
+    // Salta linha(s) na tela do terminal:
+    printf("\n");
+    
+    // Exibe o cabeçalho para o tabuleiro antes da inserção das habilidades:
+    printf("TABULEIRO COM OS NAVIOS E COM AS HABILIDADES APLICADAS:\n\n");
+
+    // Exibindo o tabuleiro e seu conteúdi (navios):
+    printf("     A B C D E F G H I J\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%2d - ", i + 1);
         for (int j = 0; j < 10; j++) {
             printf("%d ", tabuleiro[i][j]);
         }
